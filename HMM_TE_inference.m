@@ -7,7 +7,7 @@
 % to remain still for long periods of time, which means that the position
 % of the head relative to the MEG sensors will change. To avoid this
 % corrupting the spatial encoding of state activity in the multivariate HMM 
-% output, model inference is run on each 2-minute run independantly.
+% output, model inference is run on each 2-minute run independently.
 % HMM toolbox downloaded from https://github.com/OHBA-analysis/HMM-MAR
 % Zelekha A. Seedat
 
@@ -15,8 +15,8 @@
 %% Housekeeping
 clear variables; clear global;
 % Add filepaths for HMM functions
-addpath(genpath('/home/Zelekha/HMM_MAR_Master/HMM-MAR-master'))
 addpath('/home/Zelekha/')
+addpath(genpath('/home/Zelekha/HMM_MAR_Master/HMM-MAR-master'))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Enter filenames
@@ -32,8 +32,8 @@ data_nums = {'02','03','04','05','06','07','08','09','10','11','12','16'};
 for i = 1:length(data_nums)
     data_num = data_nums{i};
     data_base = '/home/Zelekha/Data/Epilepsy/';
-    filename = strcat(data_base,'patient_',patient_num,'/preproc_data_ds_',data_num,'.mat');
-    save_to = strcat(data_base,'patient_',patient_num,'/HMM/preproc_data_ds_',data_num,'/');
+    filename = strcat(data_base,'patient_',patient_num,'/preproc_data_ds_',data_num,'_20_70.mat');
+    save_to = strcat(data_base,'patient_',patient_num,'/HMM/ds_',data_num,'/');
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Basic Parameters
@@ -68,7 +68,7 @@ for i = 1:length(data_nums)
     options.zeromean = 1;
     options.covtype = 'full';
     options.useMEX = 1; 
-    options.dropstates = 1; 
+    options.dropstates = 1; % can output fewer states than asked for where appropriate
     options.DirichletDiag = 10; % diagonal of prior of trans-prob matrix (default 10 anyway)
     options.useParallel = 0; 
     options.standardise = 1; % normalise
