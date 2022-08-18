@@ -12,10 +12,10 @@ clear variables; clear global;
 % Add paths to beamformer functions
 addpath('/home/Zelekha/')
 % Add fsl path and set environment
-addpath '/opt/magres/fsl/Linux_64/fsl/etc/fslconf'
+addpath '/home/Zelekha/fsl/Linux_64/fsl/etc/fslconf'
 setenv('FSLOUTPUTTYPE','NIFTI_GZ')
 % Add filepath with the HMM_Master file in it
-addpath(genpath('/net/huail/data_local/Zelekha/Project_2/HMM_MAR_Master'))
+addpath(genpath('/home/Zelekha/HMM_MAR_Master'))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Select patient anatomical files
@@ -60,7 +60,7 @@ for xdown = 1:NewDim
     end
     disp(sprintf('doing downsample of anatomical: slice %d',xdown));
 end
-downanat_filename =  strcat(file,'Downsampled_Anat.nii');
+downanat_filename =  strcat(file,'downsampled_brain.nii');
 cbiWriteNifti(downanat_filename,Down_anat);
 mask = Down_anat > 2000;
 % Read in the transform from MRI space to CTF-MEG space
